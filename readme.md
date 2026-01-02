@@ -6,10 +6,10 @@ This repository contains an example ESPHome configuration for using an
 
 ## Features
 
--   UART-based MH-Z19E CO₂ sensor support\
--   CO₂ concentration and temperature reporting\
--   Fixed CO₂ offset compensation\
--   Manual zero-point calibration via Home Assistant button\
+-   UART-based MH-Z19E CO₂ sensor support
+-   CO₂ concentration and temperature reporting
+-   Fixed CO₂ offset compensation
+-   Manual zero-point calibration via Home Assistant button
 -   Automatic Baseline Calibration (ABC) disabled for improved long-term
     accuracy
 
@@ -46,7 +46,7 @@ filters:
 You should verify your local outdoor CO₂ reference before choosing an
 offset.
 
-Example public reference (Finland, FMI Uto station):\
+Example public reference (Finland, FMI Uto station):
 https://swell.fmi.fi/Uto/graphs_pco2both_1d.html
 
 ## Manual Calibration
@@ -62,10 +62,10 @@ button.
 
 ### Calibration Procedure
 
-1.  Place the sensor outdoors or in well-ventilated outdoor air\
-2.  Let it stabilize for **at least 20 minutes**\
-3.  Press the **"Calibrate CO2"** button in Home Assistant\
-4.  The sensor is calibrated to **400 ppm**\
+1.  Place the sensor outdoors or in well-ventilated outdoor air
+2.  Let it stabilize for **at least 20 minutes**
+3.  Press the **"Calibrate CO2"** button in Home Assistant
+4.  The sensor is calibrated to **400 ppm**
 5.  ESPHome applies the configured offset automatically
 
 ## Home Assistant Integration
@@ -80,10 +80,10 @@ button:
 
 ## Notes
 
--   Manual calibration once per year is usually sufficient\
--   Disabling ABC prevents indoor CO₂ levels from shifting the baseline\
+-   Manual calibration once per year is usually sufficient
+-   Disabling ABC prevents indoor CO₂ levels from shifting the baseline
 -   The temperature reading from the MH-Z19E is also exposed for
-    monitoring
+    monitoring purposes (accuracy is quite low)
 
 ## License
 
