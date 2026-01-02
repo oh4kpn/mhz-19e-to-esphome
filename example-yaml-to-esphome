@@ -1,0 +1,36 @@
+# UART configuration for MH-Z19E CO2 sensor
+uart:
+  tx_pin: GPIO1
+  rx_pin: GPIO3
+  baud_rate: 9600
+
+sensor:
+  - platform: mhz19
+    id: example_co2_device
+    co2:
+      name: "Example CO2 Concentration"
+      id: example_co2_value
+      filters:
+        # Sensor zero is 400 ppm.
+        # Outdoor reference measurement showed ~428 ppm,
+        # so we apply a +28 ppm offset.
+        # You can verify outdoor CO2 levels from a nearby reference station,
+        # e.g. FMI Uto station: https://swell.fmi.fi/Uto/graphs_pco2both_1d.html
+        - offset: 28.0
+    temperature:
+      name: "Example Temperature"
+    update_interval: 60s
+    automatic_baseline_calibration: false
+    # Automatic baseline calibration is disabled.
+    # Manual calibration is recommended ~once per year:
+    # expose the sensor to outdoor air for 20+ minutes,
+    # then trigger the calibration button from Home Assistant.
+
+button:
+  - platform: template
+    name: "Calibrate Example CO2 (Outdoor ~428 ppm)"
+    icon: "mdi:gas-cylinder"
+    on_press:
+      then:
+        - mhz19.calibrate_zero: example_co2_device
+        - logger.log: "Sensor calibrated to 400 ppm, ESPHome applies +28 ppm offset."
